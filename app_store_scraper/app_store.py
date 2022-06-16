@@ -1,6 +1,6 @@
 import logging
 from .base import Base
-
+from langcodes import *
 logger = logging.getLogger("AppStore")
 
 
@@ -30,8 +30,9 @@ class AppStore(Base):
         )
 
         # override
+        l=Language.get(country).to_alpha3()
         self._request_params = {
-            "l": "en-GB",
+            "l": l,
             "offset": self._request_offset,
             "limit": 20,
             "platform": "web",
